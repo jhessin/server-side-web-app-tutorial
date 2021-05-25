@@ -44,6 +44,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/passport", "npm:0.4.7"],
             ["@types/passport-local", "npm:1.0.33"],
             ["@yarnpkg/pnpify", "virtual:a4dbcbb190dd0c244f2337280423941e113f11e9018722c1d1e2276c3182297eb49ea4741987f8b9efb85661ae3e6fc3718e6d0fdedf95d7d6c9fead3dfaebf7#npm:3.0.0-rc.3"],
+            ["dotenv", "npm:10.0.0"],
             ["express", "npm:4.17.1"],
             ["express-session", "npm:1.17.2"],
             ["hjs", "npm:0.0.6"],
@@ -1444,6 +1445,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["dot-prop", "npm:5.3.0"],
             ["is-obj", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["dotenv", [
+        ["npm:10.0.0", {
+          "packageLocation": "./.yarn/cache/dotenv-npm-10.0.0-36b272df25-9c45712e21.zip/node_modules/dotenv/",
+          "packageDependencies": [
+            ["dotenv", "npm:10.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -3593,6 +3603,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/passport", "npm:0.4.7"],
             ["@types/passport-local", "npm:1.0.33"],
             ["@yarnpkg/pnpify", "virtual:a4dbcbb190dd0c244f2337280423941e113f11e9018722c1d1e2276c3182297eb49ea4741987f8b9efb85661ae3e6fc3718e6d0fdedf95d7d6c9fead3dfaebf7#npm:3.0.0-rc.3"],
+            ["dotenv", "npm:10.0.0"],
             ["express", "npm:4.17.1"],
             ["express-session", "npm:1.17.2"],
             ["hjs", "npm:0.0.6"],

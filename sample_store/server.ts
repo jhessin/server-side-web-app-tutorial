@@ -1,5 +1,9 @@
 /** @format */
 
+// dotenv config
+//require('dotenv').config();
+import 'dotenv/config';
+
 // Module imports
 import express from 'express';
 import path from 'path';
@@ -61,9 +65,11 @@ app.use(
   },
 );
 
+const { DB_HOST, DB_USER, DB_PASS } = process.env;
+
 // connect to database
 mongoose.connect(
-  'mongodb://localhost/sample-store',
+  `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/sample-store?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
