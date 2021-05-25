@@ -24,7 +24,7 @@ const app = express();
 // add session library
 app.use(
   session({
-    secret: 'aokea,eui,.',
+    secret: 'aokebrcoek',
     resave: true,
     saveUninitialized: true,
   }),
