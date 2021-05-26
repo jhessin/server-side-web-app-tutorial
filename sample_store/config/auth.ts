@@ -49,6 +49,10 @@ export const auth = (passport: PassportStatic) => {
       passReqToCallback: true,
     },
     (req, email, password, next) => {
+      // check for matching password fields
+      if (password !== req.body.confirmPassword) {
+        return next(new Error('Password fields do not match'));
+      }
       User.findOne({
         email,
       })

@@ -72,8 +72,9 @@ mongoose.connect(
   `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/sample-store?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
     useFindAndModify: false,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
   },
   err => {
     if (err) {

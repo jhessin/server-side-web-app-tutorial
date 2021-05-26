@@ -12,4 +12,15 @@ router.post(
   }),
 );
 
+router.get('/', (req, res, next) => {
+  if (req.user) {
+    res.redirect('/');
+    return;
+  }
+  const data = {
+    title: 'Home Page',
+  };
+  res.render('login', data);
+});
+
 export { router as login };

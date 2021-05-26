@@ -1,38 +1,77 @@
 /** @format */
 
 import { Router } from 'express';
+import { hashSync, compareSync } from 'bcrypt';
+import { User } from '../models';
 
 const router = Router();
 
 router.get('/', (req, res) => {
-  res.json({
-    user: req.user || 'not logged in',
-  });
+  const { user } = req;
+  if (!user) {
+    res.redirect('/');
+    return;
+  }
+  const data = {
+    title: 'Account Page',
+    user,
+  };
+  res.render('account', data);
 });
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.json({
-    confirmation: 'user logged out',
-  });
+  res.redirect('/');
 });
 
-//router.post('/', (req, res, next) => {
-//User.findOne(req.body)
-//.then((user: IUser) => {
-//// check no user
-//if (!user) {
-//return next(new Error('Invalid email or password'));
-//}
+router.post('/update', (req, res, next) => {
+  // check old password
+  if (
+    compareSync(req.body.currentPassword, req.user.password) &&
+    req.body.password === req.body.confirmPassword
+  ) {
+    User.findById(req.user._id)
+      .updateOne({
+        password: hashSync(req.body.password, 10),
+      })
+      .then(user => {
+        res.render('account', {
+          user: req.user,
+          message: 'Successfully updated password',
+        });
+      })
+      .catch(err => {
+        res.render('error', {
+          title: 'Error Page',
+          message: err.message,
+          user: req.user,
+        });
+      });
+  } else {
+    res.render('error', {
+      title: 'Error',
+      message: 'Password mismatch',
+      user: req.user,
+    });
+  }
+});
 
-//res.json({
-//confirmation: 'success',
-//user,
-//});
-//})
-//.catch(err => {
-//return next(err);
-//});
-//});
+router.post('/delete', (req, res, next) => {
+  User.findById(req.user._id)
+    .deleteOne()
+    .then(success => {
+      req.logout();
+      res.render('account', {
+        message: 'Account deleted redirecting to login page...',
+        redirect: '/login',
+      });
+    })
+    .catch(err => {
+      res.render('error', {
+        message: err.message,
+        user: req.user,
+      });
+    });
+});
 
 export { router as account };
