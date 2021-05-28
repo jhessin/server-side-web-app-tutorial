@@ -12,7 +12,7 @@ import passport from 'passport';
 import session from 'express-session';
 
 // route imports
-import { home, register, login, account } from './routes';
+import { home, register, login, account, admin } from './routes';
 
 // config imports
 import { auth } from './config';
@@ -50,6 +50,7 @@ app.use('/', home);
 app.use('/register', register);
 app.use('/login', login);
 app.use('/account', account);
+app.use('/admin', admin);
 
 // Set up an error route
 app.use(

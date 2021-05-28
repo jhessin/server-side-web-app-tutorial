@@ -11,7 +11,7 @@
       integrity="sha256-hHKA3d/HttC8OW3Sl093W8DoZudhHJDj++kZYo6MLzA="
       crossorigin="anonymous"
     />
-    <title>{{ title }}</title>
+    <title>Login Page</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

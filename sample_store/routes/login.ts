@@ -8,7 +8,7 @@ const router = Router();
 router.post(
   '/',
   passport.authenticate('localLogin', {
-    successRedirect: '/account',
+    successRedirect: '/',
   }),
 );
 

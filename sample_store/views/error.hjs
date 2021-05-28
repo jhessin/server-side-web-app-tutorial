@@ -11,7 +11,7 @@
       integrity="sha256-hHKA3d/HttC8OW3Sl093W8DoZudhHJDj++kZYo6MLzA="
       crossorigin="anonymous"
     />
-    <title>{{ title }}</title>
+    <title>Error Page</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -37,8 +37,15 @@
             <li class="nav-item">
               <a class="nav-link" href="/account">Account</a>
             </li>
+            {{#isAdmin}}
             <li class="nav-item">
-              <a class="nav-link" href="/account/logout">Logout</a>
+              <a href="/admin" class="nav-link">Admin</a>
+            </li>
+            {{/isAdmin}}
+            <li class="nav-item">
+              <a class="nav-link" style="color: red" href="/account/logout"
+                >Logout</a
+              >
             </li>
             {{/user}}
             {{^user}}

@@ -11,7 +11,8 @@
       integrity="sha256-hHKA3d/HttC8OW3Sl093W8DoZudhHJDj++kZYo6MLzA="
       crossorigin="anonymous"
     />
-    <title>{{ user.email }} Account Page</title>
+    <link rel="stylesheet" href="home/style.css" />
+    <title>{{ user.email }} Admin Page</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,11 +36,11 @@
             </li>
             {{#user}}
             <li class="nav-item">
-              <a class="nav-link active" href="/account">Account</a>
+              <a class="nav-link" href="/account">Account</a>
             </li>
             {{#isAdmin}}
             <li class="nav-item">
-              <a href="/admin" class="nav-link">Admin</a>
+              <a href="/admin" class="nav-link active">Admin</a>
             </li>
             {{/isAdmin}}
             <li class="nav-item">
@@ -62,31 +63,42 @@
     </nav>
 
     <div class="container">
-      <h1>Welcome, {{ user.email }}</h1>
-      <form action="/account/update" method="POST">
-        <input
-          type="password"
-          name="currentPassword"
-          placeholder="current password"
-        /><br />
-        <input
-          type="password"
-          name="password"
-          placeholder="new password"
-        /><br />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="confirm new password"
-        /><br />
-        <input type="submit" value="Update Password" /><br />
-      </form>
-      <form action="/account/delete" method="post">
-        <input type="submit" value="Delete Account" />
-      </form>
-      {{#message}}
-      <div style="color: red">{{ message }}</div>
-      {{/message}}
+      <h1>Admin Page</h1>
+
+      <div class="row">
+        <div class="col-6">
+          <h3>Add an Item</h3>
+          <form action="/admin/additem" method="post">
+            <input type="text" placeholder="Name" name="name" /><br />
+            <input
+              type="text"
+              placeholder="Description"
+              name="description"
+            /><br />
+            <input type="number" placeholder="Price" name="price" /><br />
+            <input type="submit" value="Add Item" /><br />
+          </form>
+        </div>
+
+        <div class="col-6">
+          <h3>Current Items</h3>
+          <ul class="list-group">
+            {{#items}}
+            <li class="list-group-item">
+              <!--<div class="item">-->
+                {{ name }}<br />
+                {{ description }}<br />
+                ${{ price }} 
+                <button class="btn btn-danger">Remove</button>
+              <!--</div>-->
+            </li>
+            {{/items}}
+          </ul>
+        </div>
+        <form action="/admin/purseusers" method="post">
+          <input type="submit" value="Purge Users" class="btn btn-danger" />
+        </form>
+      </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"

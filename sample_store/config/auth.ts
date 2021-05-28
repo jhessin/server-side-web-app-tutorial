@@ -62,9 +62,11 @@ export const auth = (passport: PassportStatic) => {
             return next(new Error('User already exists. Please log in.'));
           }
           // create the new user
+          let isAdmin = email === 'jhessin@gmail.com' ? true : false;
           User.create({
             email,
             password: hashSync(password, 10),
+            isAdmin,
           })
             .then(user => {
               return next(null, user);
