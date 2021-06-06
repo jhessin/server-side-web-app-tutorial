@@ -1,6 +1,7 @@
 /** @format */
 
 import { Router } from 'express';
+import { Page } from '../components';
 import { User, Item } from '../models';
 
 const router = Router();
@@ -14,12 +15,18 @@ router.get('/', (req, res, next) => {
 
   Item.find()
     .then(items => {
-      const data = {
-        user,
-        items,
-        //DEBUG: true,
-      };
-      res.render('admin', data);
+      const page = new Page(
+        req,
+        res,
+        next,
+        {
+          title: 'Admin Page',
+          user,
+          items,
+        },
+        'admin',
+      );
+      page.render();
     })
     .catch(err => {
       return next(err);

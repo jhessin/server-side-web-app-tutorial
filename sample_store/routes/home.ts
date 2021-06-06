@@ -2,6 +2,7 @@
 
 import { Router } from 'express';
 import { Item } from '../models';
+import { Page } from '../components';
 
 const router = Router();
 
@@ -10,17 +11,32 @@ router.get('/', (req, res, next) => {
 
   Item.find()
     .then(items => {
-      const data = {
-        title: 'Home Page',
-        items,
-        user,
-        partials: {
-          content: 'homejr',
+      const page = new Page(
+        req,
+        res,
+        next,
+        {
+          title: 'Home Page',
+          items,
+          user,
+          partials: {
+            content: 'home',
+          },
         },
-        //DEBUG: true,
-      };
-      //res.render('home', data);
-      res.render('base', data);
+        'base',
+      );
+      page.render();
+      //const data = {
+      //title: 'Home Page',
+      //items,
+      //user,
+      //partials: {
+      //content: 'homejr',
+      //},
+      ////DEBUG: true,
+      //};
+      ////res.render('home', data);
+      //res.render('base', data);
     })
     .catch(err => {
       res.render('error', {

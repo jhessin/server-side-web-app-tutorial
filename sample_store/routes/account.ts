@@ -3,20 +3,27 @@
 import { Router } from 'express';
 import { hashSync, compareSync } from 'bcrypt';
 import { User } from '../models';
+import { Page } from '../components';
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   const { user } = req;
   if (!user) {
     res.redirect('/');
     return;
   }
-  const data = {
-    title: 'Account Page',
-    user,
-  };
-  res.render('account', data);
+  const page = new Page(
+    req,
+    res,
+    next,
+    {
+      title: 'Account Page',
+      user,
+    },
+    'account',
+  );
+  page.render();
 });
 
 router.get('/logout', (req, res) => {

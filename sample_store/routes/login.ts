@@ -2,6 +2,7 @@
 
 import { Router } from 'express';
 import passport from 'passport';
+import { Page } from '../components';
 
 const router = Router();
 
@@ -17,10 +18,16 @@ router.get('/', (req, res, next) => {
     res.redirect('/');
     return;
   }
-  const data = {
-    title: 'Home Page',
-  };
-  res.render('login', data);
+  const page = new Page(
+    req,
+    res,
+    next,
+    {
+      title: 'Login Page',
+    },
+    'login',
+  );
+  page.render();
 });
 
 export { router as login };
