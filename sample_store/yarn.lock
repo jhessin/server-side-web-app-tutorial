@@ -3102,6 +3102,15 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"rome@npm:^10.0.4-beta":
+  version: 10.0.4-beta
+  resolution: "rome@npm:10.0.4-beta"
+  bin:
+    rome: bin/rome/index.js
+  checksum: 2dabc88c0c7d9e055684174ecd492281a8148b1981e805411548283ba42853ef129e44e6dfce0a1e676f1cb94cd9af9ccdcc2faf4a24c9de1e21674d8be5b829
+  languageName: node
+  linkType: hard
+
 "run-parallel@npm:^1.1.9":
   version: 1.2.0
   resolution: "run-parallel@npm:1.2.0"
@@ -3153,6 +3162,7 @@ fsevents@~2.3.1:
     nodemon: ^2.0.7
     passport: ^0.4.1
     passport-local: ^1.0.0
+    rome: ^10.0.4-beta
     ts-node: ^10.0.0
     typescript: ^4.2.4
   languageName: unknown

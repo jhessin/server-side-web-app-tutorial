@@ -2,20 +2,20 @@
 
 // dotenv config
 //require('dotenv').config();
-import 'dotenv/config';
+import "dotenv/config";
 
 // Module imports
-import express from 'express';
-import path from 'path';
-import mongoose from 'mongoose';
-import passport from 'passport';
-import session from 'express-session';
+import express from "express";
+import path from "path";
+import mongoose from "mongoose";
+import passport from "passport";
+import session from "express-session";
 
 // route imports
-import { home, register, login, account, admin } from './routes';
+import { home, register, login, account, admin } from "./routes";
 
 // config imports
-import { auth } from './config';
+import { auth } from "./config";
 auth(passport);
 
 // Express App
@@ -24,7 +24,7 @@ const app = express();
 // add session library
 app.use(
   session({
-    secret: 'aokebrcoek',
+    secret: "aokebrcoek",
     resave: true,
     saveUninitialized: true,
   }),
@@ -35,22 +35,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Set view engine and views directory
-app.set('view engine', 'hjs');
-app.set('views', path.join(__dirname, 'views'));
+app.set("view engine", "hjs");
+app.set("views", path.join(__dirname, "views"));
 
 // parse post data as json
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // set public directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // set up routes
-app.use('/', home);
-app.use('/register', register);
-app.use('/login', login);
-app.use('/account', account);
-app.use('/admin', admin);
+app.use("/", home);
+app.use("/register", register);
+app.use("/login", login);
+app.use("/account", account);
+app.use("/admin", admin);
 
 // Set up an error route
 app.use(
@@ -60,7 +60,7 @@ app.use(
     res: express.Response,
     next: express.NextFunction,
   ) => {
-    res.render('error', {
+    res.render("error", {
       message: err.message,
     });
   },
@@ -83,9 +83,9 @@ mongoose.connect(
       return;
     }
 
-    console.log('DB Connection success');
-    app.listen(8080, '0.0.0.0', () => {
-      console.log('App running on port 8080');
+    console.log("DB Connection success");
+    app.listen(8080, "0.0.0.0", () => {
+      console.log("App running on port 8080");
     });
   },
 );

@@ -54,6 +54,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nodemon", "npm:2.0.7"],
             ["passport", "npm:0.4.1"],
             ["passport-local", "npm:1.0.0"],
+            ["rome", "npm:10.0.4-beta"],
             ["ts-node", "virtual:a4dbcbb190dd0c244f2337280423941e113f11e9018722c1d1e2276c3182297eb49ea4741987f8b9efb85661ae3e6fc3718e6d0fdedf95d7d6c9fead3dfaebf7#npm:10.0.0"],
             ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"]
           ],
@@ -3625,6 +3626,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["rome", [
+        ["npm:10.0.4-beta", {
+          "packageLocation": "./.yarn/unplugged/rome-npm-10.0.4-beta-aefcfcd0d3/node_modules/rome/",
+          "packageDependencies": [
+            ["rome", "npm:10.0.4-beta"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["run-parallel", [
         ["npm:1.2.0", {
           "packageLocation": "./.yarn/cache/run-parallel-npm-1.2.0-3f47ff2034-3d12f0251a.zip/node_modules/run-parallel/",
@@ -3682,6 +3692,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nodemon", "npm:2.0.7"],
             ["passport", "npm:0.4.1"],
             ["passport-local", "npm:1.0.0"],
+            ["rome", "npm:10.0.4-beta"],
             ["ts-node", "virtual:a4dbcbb190dd0c244f2337280423941e113f11e9018722c1d1e2276c3182297eb49ea4741987f8b9efb85661ae3e6fc3718e6d0fdedf95d7d6c9fead3dfaebf7#npm:10.0.0"],
             ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"]
           ],
