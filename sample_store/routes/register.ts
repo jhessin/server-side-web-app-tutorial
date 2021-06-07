@@ -6,10 +6,10 @@ import { authenticate } from 'passport';
 const router = Router();
 
 router.post(
-  '/',
-  authenticate('localRegister', {
-    successRedirect: '/account',
-  }),
+	'/',
+	authenticate('localRegister', {
+		successRedirect: '/account',
+	}),
 );
 //router.post('/', (req, res) => {
 //User.create(req.body)

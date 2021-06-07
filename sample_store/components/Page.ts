@@ -1,6 +1,6 @@
 /** @format */
 
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from "express";
 
 type map = { [key: string]: string };
 
@@ -17,12 +17,12 @@ export class Page {
     res: Response,
     next: NextFunction,
     data: dataMap = {
-      title: 'Home Page',
+      title: "Home Page",
       partials: {
-        content: 'home',
+        content: "home",
       },
     },
-    view: string = 'base',
+    view: string = "base",
   ) {
     this._req = req;
     this._res = res;
@@ -33,9 +33,9 @@ export class Page {
 
   // The data that is sent to the page
   private _data: dataMap = {
-    title: 'Home Page',
+    title: "Home Page",
     partials: {
-      content: 'home',
+      content: "home",
     },
   };
 
@@ -57,7 +57,7 @@ export class Page {
   }
 
   // The parent page to load
-  private _view = 'base';
+  private _view = "base";
 
   public set view(v: string) {
     this._view = v;

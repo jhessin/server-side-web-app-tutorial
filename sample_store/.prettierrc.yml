@@ -1,4 +1,5 @@
 semi: true
+tabs: true
 singleQuote: false
 quoteProps: as-needed
 trailingComma: all
