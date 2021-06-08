@@ -2,9 +2,9 @@
 
 import { Request, Response, NextFunction } from "express";
 
-type map = { [key: string]: string };
+export type map = { [key: string]: string };
 
-type dataMap = {
+export type dataMap = {
   title: string;
   partials?: map;
   [key: string]: any;

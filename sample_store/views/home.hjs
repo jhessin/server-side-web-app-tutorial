@@ -12,7 +12,7 @@
         {{ name }}<br />
         {{ description }}<br />
         ${{ price }}
-        <button class="btn btn-success">Add</button>
+        <a class="btn btn-success" href="/additem/{{ id }}">Add</a>
         <!--</div>-->
       </li>
       {{/items}}
@@ -20,6 +20,18 @@
   </div>
   <div class="col-4">
     <h3>My Items</h3>
+    <ul class="list-group">
+      {{#interested}}
+      <li class="list-group-item">
+        <!--<div class="item">-->
+        {{ name }}<br />
+        {{ description }}<br />
+        ${{ price }}
+        <a class="btn btn-danger" href="/removeitem/{{ id }}">Remove</a>
+        <!--</div>-->
+      </li>
+      {{/interested}}
+    </ul>
   </div>
 </div>
 
