@@ -28,7 +28,11 @@
       {{/items}}
     </ul>
   </div>
-  <form action="/admin/purseusers" method="post">
-    <input type="submit" value="Purge Users" class="btn btn-danger" />
-  </form>
+</div>
+<div class="row">
+  <div class="col-12">
+    <form action="/admin/purseusers" method="post">
+      <input type="submit" value="Purge Users" class="btn btn-danger" />
+    </form>
+  </div>
 </div>
