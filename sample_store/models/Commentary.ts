@@ -3,7 +3,7 @@
 import { model, Schema, Model, Document, ObjectId } from "mongoose";
 
 export interface ICommentary extends Document {
-  _id: ObjectId;
+  _id?: ObjectId;
   book: string;
   chapter: number;
   verse: number;
@@ -17,11 +17,11 @@ const CommentarySchema: Schema = new Schema({
   },
   chapter: {
     type: Number,
-    required: true,
+    default: null,
   },
   verse: {
     type: Number,
-    required: true,
+    default: null,
   },
   commentary: {
     type: String,

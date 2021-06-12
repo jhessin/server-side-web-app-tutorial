@@ -3,7 +3,7 @@
 import { model, Schema, Model, Document, ObjectId } from "mongoose";
 
 export interface IItem extends Document {
-  _id: string;
+  _id?: ObjectId;
   name: string;
   description: string;
   price: number;

@@ -278,6 +278,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node-fetch@npm:^2":
+  version: 2.5.10
+  resolution: "@types/node-fetch@npm:2.5.10"
+  dependencies:
+    "@types/node": "*"
+    form-data: ^3.0.0
+  checksum: 7687038f73cf0f2e4bac8ced3abdfbb77f8b2719de2f180d0064238d7460c8b4dc0b39c08da35a76d7db9f86528599ea0f7cee7c468ad7cfecfe2db1c5863641
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:^15.6.0":
   version: 15.6.0
   resolution: "@types/node@npm:15.6.0"
@@ -1031,7 +1041,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"combined-stream@npm:^1.0.6":
+"combined-stream@npm:^1.0.6, combined-stream@npm:^1.0.8":
   version: 1.0.8
   resolution: "combined-stream@npm:1.0.8"
   dependencies:
@@ -1640,6 +1650,17 @@ __metadata:
     combined-stream: ^1.0.6
     mime-types: ^2.1.12
   checksum: c46ee9a14a8678b6e0dfafabc96e25237d9f11ced9c51cd371a2b3448f6a3f2fa684b3bbbb35911bae8f5448b3f3c48c73f7f2be791a4ae5aee0eb0ab3cdfec2
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "form-data@npm:3.0.1"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: 6574ff4d2d845c47ba288151a6e0573767eefdee9da358be199e0f0b66aa5c454e7d62ed5e0daef6f84167ba1e9596e064f36f206488e460ef449ef7b653cdfc
   languageName: node
   linkType: hard
 
@@ -3589,6 +3610,7 @@ fsevents@~2.3.1:
     "@types/mailgun-js": ^0
     "@types/mongoose": ^5
     "@types/node": ^15.6.0
+    "@types/node-fetch": ^2
     "@types/passport": ^0
     "@types/passport-local": ^1
     "@yarnpkg/pnpify": ^3.0.0-rc.3
@@ -3599,6 +3621,7 @@ fsevents@~2.3.1:
     hjs: ^0.0.6
     mailgun-js: ^0.22.0
     mongoose: ^5.12.11
+    node-fetch: ^2.6.1
     nodemon: ^2.0.7
     passport: ^0.4.1
     passport-local: ^1.0.0

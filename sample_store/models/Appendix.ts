@@ -3,7 +3,7 @@
 import { model, Schema, Model, Document, ObjectId } from "mongoose";
 
 export interface IAppendix extends Document {
-  _id: ObjectId;
+  _id?: ObjectId;
   title: string;
   appendix: string;
 }

@@ -43,6 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/mailgun-js", "npm:0.22.11"],
             ["@types/mongoose", "npm:5.10.5"],
             ["@types/node", "npm:15.6.0"],
+            ["@types/node-fetch", "npm:2.5.10"],
             ["@types/passport", "npm:0.4.7"],
             ["@types/passport-local", "npm:1.0.33"],
             ["@yarnpkg/pnpify", "virtual:a4dbcbb190dd0c244f2337280423941e113f11e9018722c1d1e2276c3182297eb49ea4741987f8b9efb85661ae3e6fc3718e6d0fdedf95d7d6c9fead3dfaebf7#npm:3.0.0-rc.3"],
@@ -53,6 +54,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["hjs", "npm:0.0.6"],
             ["mailgun-js", "npm:0.22.0"],
             ["mongoose", "npm:5.12.11"],
+            ["node-fetch", "npm:2.6.1"],
             ["nodemon", "npm:2.0.7"],
             ["passport", "npm:0.4.1"],
             ["passport-local", "npm:1.0.0"],
@@ -383,6 +385,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-15.6.0-2f2269856c-54515155db.zip/node_modules/@types/node/",
           "packageDependencies": [
             ["@types/node", "npm:15.6.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/node-fetch", [
+        ["npm:2.5.10", {
+          "packageLocation": "./.yarn/cache/@types-node-fetch-npm-2.5.10-86e5199acc-7687038f73.zip/node_modules/@types/node-fetch/",
+          "packageDependencies": [
+            ["@types/node-fetch", "npm:2.5.10"],
+            ["@types/node", "npm:15.6.0"],
+            ["form-data", "npm:3.0.1"]
           ],
           "linkType": "HARD",
         }]
@@ -1959,6 +1972,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/form-data-npm-2.5.1-47256351b5-c46ee9a14a.zip/node_modules/form-data/",
           "packageDependencies": [
             ["form-data", "npm:2.5.1"],
+            ["asynckit", "npm:0.4.0"],
+            ["combined-stream", "npm:1.0.8"],
+            ["mime-types", "npm:2.1.31"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.0.1", {
+          "packageLocation": "./.yarn/cache/form-data-npm-3.0.1-d080d436e0-6574ff4d2d.zip/node_modules/form-data/",
+          "packageDependencies": [
+            ["form-data", "npm:3.0.1"],
             ["asynckit", "npm:0.4.0"],
             ["combined-stream", "npm:1.0.8"],
             ["mime-types", "npm:2.1.31"]
@@ -4166,6 +4189,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/mailgun-js", "npm:0.22.11"],
             ["@types/mongoose", "npm:5.10.5"],
             ["@types/node", "npm:15.6.0"],
+            ["@types/node-fetch", "npm:2.5.10"],
             ["@types/passport", "npm:0.4.7"],
             ["@types/passport-local", "npm:1.0.33"],
             ["@yarnpkg/pnpify", "virtual:a4dbcbb190dd0c244f2337280423941e113f11e9018722c1d1e2276c3182297eb49ea4741987f8b9efb85661ae3e6fc3718e6d0fdedf95d7d6c9fead3dfaebf7#npm:3.0.0-rc.3"],
@@ -4176,6 +4200,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["hjs", "npm:0.0.6"],
             ["mailgun-js", "npm:0.22.0"],
             ["mongoose", "npm:5.12.11"],
+            ["node-fetch", "npm:2.6.1"],
             ["nodemon", "npm:2.0.7"],
             ["passport", "npm:0.4.1"],
             ["passport-local", "npm:1.0.0"],

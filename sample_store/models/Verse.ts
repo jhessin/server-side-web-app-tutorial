@@ -3,14 +3,14 @@
 import { model, Schema, Model, Document, ObjectId } from "mongoose";
 
 export interface IVerse extends Document {
-  _id: ObjectId;
+  _id?: ObjectId;
   book: string;
   chapter: number;
   verse: number;
   versetext: string;
 }
 
-const VerseSchema: Schema = new Schema({
+export const VerseSchema: Schema = new Schema({
   book: {
     type: String,
     required: true,

@@ -1,8 +1,9 @@
 /** @format */
 
-import { model, Schema, Model, Document } from "mongoose";
+import { model, Schema, Model, Document, ObjectId } from "mongoose";
 
 export interface IUser extends Document {
+  _id?: ObjectId;
   email: string;
   password: string;
   isAdmin: boolean;

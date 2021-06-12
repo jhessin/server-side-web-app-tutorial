@@ -1,0 +1,7 @@
+<!-- @format -->
+<h1>{{ book }}</h1>
+<h2>{{ chapter }}</h2>
+{{#bible}}
+<superscript>{{ verse }}</superscript>
+<p>{{ versetext }}</p>
+{{/bible}}
