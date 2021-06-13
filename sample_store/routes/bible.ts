@@ -5,6 +5,8 @@ import fetch from "node-fetch";
 import { Verse, Bible, Commentary, Appendix } from "../models";
 import { BasePage } from "../components";
 
+let bibleLock: boolean = false;
+
 const NAMES = {
   BOOKS: [
     "Genesis",
@@ -18,15 +20,13 @@ const NAMES = {
 const router = Router();
 
 async function updateBible() {
-  //https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=[bible || commentary || appendices].
+  if (bibleLock) {
+    return;
+  }
+  bibleLock = true;
+  console.log("Fetching Bible Verses");
   const verses = await fetch(
     "https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=bible",
-  ).then(r => r.json());
-  //const commentary = await fetch(
-  //"https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=commentary",
-  //).then(r => r.json());
-  const appendices = await fetch(
-    "https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=appendices",
   ).then(r => r.json());
   // parse bible into bible structure.
   // invalidate verses
@@ -48,6 +48,10 @@ async function updateBible() {
   });
 
   // iterate through appendices
+  console.log("Fetching Appendices");
+  const appendices = await fetch(
+    "https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=appendices",
+  ).then(r => r.json());
   console.log("Iterating through appendices");
   appendices.REV_Appendices.forEach(async (appendix: any) => {
     if (appendix.title && appendix.appendix) {
@@ -57,26 +61,32 @@ async function updateBible() {
   });
 
   // iterate through Commentary
-  //console.log("Iterating through Commentary");
-  //commentary.REV_Commentary.forEach(async (com: any) => {
-  //if (com.book && com.commentary) {
-  //console.log(
-  //`Commentary found: Parsing commentary for ${com.book} ${com.chapter}:${com.verse}`,
-  //);
-  //await Commentary.create(com);
-  //}
-  //});
+  console.log("Fetching commentary");
+  const commentary = await fetch(
+    "https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=commentary",
+  ).then(r => r.json());
+  console.log("Iterating through Commentary");
+  commentary.REV_Commentary.forEach(async (com: any) => {
+    if (com.book && com.chapter && com.verse && com.commentary) {
+      console.log(
+        `Commentary found: Parsing commentary for ${com.book} ${com.chapter}:${com.verse}`,
+      );
+      await Commentary.create(com);
+    }
+  });
   console.log("Completed parsing bible, appendix, and commentary");
 
   console.log("Creating Bible timestamp");
   await Bible.create({});
   console.log("Finished creating Bible timestamp");
+  bibleLock = false;
 }
 
 router.get("/", async (req, res, next) => {
   // First check the database for current info
   let bible = await Bible.findOne().exec();
 
+  // Generate a page to give info
   const page = new BasePage({
     req,
     res,
@@ -85,46 +95,78 @@ router.get("/", async (req, res, next) => {
     content: "bible",
   });
 
+  // update the bible if necessary
   if (bible && Date.now() - bible.timestamp.getTime() > 24 * 60 * 60 * 1000) {
     bible.delete();
   }
 
   try {
     if (!bible) {
-      await updateBible();
+      updateBible();
+      page.content = "message";
+      page.data.message = "Generating Bible please wait a while and try again,";
+      page.render();
+    } else {
+      const book = NAMES.BOOKS[0];
+      const chapter = 1;
+      console.log("Finding verses from database");
+      const bk = await Verse.find(
+        {
+          book,
+          chapter,
+        },
+        null,
+        {
+          sort: "verse",
+        },
+      ).exec();
+      console.log("Finished finding verses from database");
+      //console.log(gen);
+      page.data.bible = bk;
+      page.data.book = book;
+      page.data.chapter = chapter;
+      console.log("Rendering page...");
+      page.render();
+      //res.json(gen);
     }
-
-    const book = NAMES.BOOKS[0];
-    const chapter = 1;
-    console.log("Finding verses from database");
-    const bk = await Verse.find(
-      {
-        book,
-        chapter,
-      },
-      null,
-      {
-        sort: "verse",
-      },
-    ).exec();
-    console.log("Finished finding verses from database");
-    //console.log(gen);
-    page.data.bible = bk;
-    page.data.book = book;
-    page.data.chapter = chapter;
-    console.log("Rendering page...");
-    page.render();
-    //res.json(gen);
   } catch (err) {
     next(err);
   }
 });
 
+router.get("/forcedUpdate", async (req, res, next) => {
+  try {
+    const page = new BasePage({
+      req,
+      res,
+      next,
+      title: "Updated!",
+      content: "message",
+      data: {
+        message: "Database is updating please wait...",
+      },
+    });
+    if (!bibleLock) {
+      await Bible.deleteMany({});
+      updateBible().then(() => {
+        page.data.message = "Database update completed";
+      });
+    }
+    page.render();
+  } catch (err) {
+    return next(err);
+  }
+});
+
 router.get("/commentary", async (req, res, next) => {
-  const commentary = await fetch(
-    "https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=commentary",
-  ).then(r => r.json());
-  res.json(commentary);
+  try {
+    const commentary = await fetch(
+      "https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=commentary",
+    ).then(r => r.json());
+    res.json(commentary);
+  } catch (err) {
+    return next(err);
+  }
 });
 
 router.get("/appendices", async (req, res, next) => {

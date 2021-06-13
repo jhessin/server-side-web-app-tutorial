@@ -1,7 +1,6 @@
 <!-- @format -->
-<h1>{{ book }}</h1>
-<h2>{{ chapter }}</h2>
+<a href="/rev/forcedUpdate">Force Update</a>
+<h1>{{ book }} {{ chapter }}</h1>
 {{#bible}}
-<superscript>{{ verse }}</superscript>
-<p>{{ versetext }}</p>
+<p><strong>{{verse}}</strong> {{{ versetext }}}</p>
 {{/bible}}

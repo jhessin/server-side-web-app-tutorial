@@ -17,11 +17,11 @@ const CommentarySchema: Schema = new Schema({
   },
   chapter: {
     type: Number,
-    default: null,
+    required: true,
   },
   verse: {
     type: Number,
-    default: null,
+    required: true,
   },
   commentary: {
     type: String,
