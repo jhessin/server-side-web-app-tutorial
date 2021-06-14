@@ -2,19 +2,49 @@
 
 import { model, Schema, Model, Document, ObjectId } from "mongoose";
 
+export enum Style {
+  Prose = 1,
+  Poetry,
+  PoetryNoClip,
+  PoetryPreBreak,
+  PoetryPreBreakNoClip,
+  List,
+  ListNoClip,
+  ListPreBreak,
+  ListPreBreakNoClip,
+}
+
 export interface IVerse extends Document {
   _id?: ObjectId;
-  testament: number;
   book: string;
   chapter: number;
   verse: number;
-  versetext: string;
   heading: string;
-  paragraph: boolean;
-  style: string;
   microheading: boolean;
-  footnote: string;
+  paragraph: boolean;
+  style: Style;
+  footnotes: string;
+  versetext: string;
 }
+
+export const verseSchema = {
+  name: 'verse',
+  properties: {
+    _id: 'objectId?',
+    __v: 'int?',
+    _key: 'objectId',
+    book: 'string?',
+    chapter: 'int?',
+    footnotes: 'string?',
+    heading: 'string?',
+    microheading: 'bool?',
+    paragraph: 'bool?',
+    style: 'int?',
+    verse: 'int?',
+    versetext: 'string?',
+  },
+  primaryKey: '_id',
+};
 
 export const VerseSchema: Schema = new Schema({
   book: {
@@ -28,6 +58,26 @@ export const VerseSchema: Schema = new Schema({
   verse: {
     type: Number,
     required: true,
+  },
+  heading: {
+    type: String,
+    default: "",
+  },
+  microheading: {
+    type: Boolean,
+    default: false,
+  },
+  paragraph: {
+    type: Boolean,
+    default: false,
+  },
+  style: {
+    type: Style,
+    required: true,
+  },
+  footnotes: {
+    type: String,
+    default: "~~",
   },
   versetext: {
     type: String,

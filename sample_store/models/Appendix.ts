@@ -8,6 +8,18 @@ export interface IAppendix extends Document {
   appendix: string;
 }
 
+export const appendixSchema = {
+  name: "appendix",
+  properties: {
+    _id: "objectId?",
+    __v: "int?",
+    _key: "objectId",
+    appendix: "string?",
+    title: "string?",
+  },
+  primaryKey: "_id",
+};
+
 const AppendixSchema: Schema = new Schema({
   title: {
     type: String,

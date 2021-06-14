@@ -1,0 +1,14 @@
+<!-- @format -->
+
+<form action="/rev" method="POST">
+  <div class="form-floating">
+    <input
+      id="floatingSearch"
+      class="form-control"
+      type="text"
+      name="search"
+      placeholder="Enter Bible Reference"
+    />
+    <label for="floatingSearch">Eneter Bible Reference</label>
+  </div>
+</form>

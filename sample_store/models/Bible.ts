@@ -19,4 +19,16 @@ export const BibleSchema: Schema = new Schema({
   },
 });
 
+export const bibleSchema = {
+  name: "bible",
+  properties: {
+    _id: "objectId?",
+    __v: "int?",
+    _key: "objectId",
+    timestamp: "date?",
+    version: "int?",
+  },
+  primaryKey: "_id",
+};
+
 export const Bible: Model<IBible> = model("Bible", BibleSchema);

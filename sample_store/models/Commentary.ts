@@ -10,6 +10,20 @@ export interface ICommentary extends Document {
   commentary: string;
 }
 
+export const commentarySchema = {
+  name: "commentary",
+  properties: {
+    _id: "objectId?",
+    __v: "int?",
+    _key: "objectId",
+    book: "string?",
+    chapter: "int?",
+    commentary: "string?",
+    verse: "int?",
+  },
+  primaryKey: "_id",
+};
+
 const CommentarySchema: Schema = new Schema({
   book: {
     type: String,
