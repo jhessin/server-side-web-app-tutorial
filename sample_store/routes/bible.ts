@@ -175,38 +175,40 @@ router.post("/", (req, res, next) => {
     });
   } else {
     // Now try a single verse
-    const book = new RegExp(split[1] + " " + split[2], "i");
+    const book = new RegExp("^" + (split[1] + " " + split[2]).trim(), "i");
     const chapter = parseInt(split[3]);
     console.log(`Finding ${book} ${chapter}`);
     Verse.find({
       book,
       chapter,
-    }).then(bible => {
-      if (bible.length > 0) {
-        const book = bible[0].book;
-        const page = new BiblePage({
-          req,
-          res,
-          next,
-          book,
-          chapter,
-          bible,
-        });
-        page.render();
-      } else {
-        const page = new BasePage({
-          req,
-          res,
-          next,
-          title: "Not Found",
-          content: "message",
-          data: {
-            message: `${book} ${chapter} doesn't exist!`,
-          },
-        });
-        page.render();
-      }
-    });
+    })
+      .sort("verse")
+      .then(bible => {
+        if (bible.length > 0) {
+          const book = bible[0].book;
+          const page = new BiblePage({
+            req,
+            res,
+            next,
+            book,
+            chapter,
+            bible,
+          });
+          page.render();
+        } else {
+          const page = new BasePage({
+            req,
+            res,
+            next,
+            title: "Not Found",
+            content: "message",
+            data: {
+              message: `${book} ${chapter} doesn't exist!`,
+            },
+          });
+          page.render();
+        }
+      });
     //res.json(split);
   }
 });

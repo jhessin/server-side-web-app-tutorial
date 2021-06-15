@@ -5,13 +5,13 @@ import { model, Schema, Model, Document, ObjectId } from "mongoose";
 export enum Style {
   Prose = 1,
   Poetry,
-  PoetryNoClip,
+  PoetryNoGap,
   PoetryPreBreak,
-  PoetryPreBreakNoClip,
+  PoetryPreBreakNoGap,
   List,
-  ListNoClip,
+  ListNoGap,
   ListPreBreak,
-  ListPreBreakNoClip,
+  ListPreBreakNoGap,
 }
 
 export interface IVerse extends Document {
@@ -28,22 +28,22 @@ export interface IVerse extends Document {
 }
 
 export const verseSchema = {
-  name: 'verse',
+  name: "verse",
   properties: {
-    _id: 'objectId?',
-    __v: 'int?',
-    _key: 'objectId',
-    book: 'string?',
-    chapter: 'int?',
-    footnotes: 'string?',
-    heading: 'string?',
-    microheading: 'bool?',
-    paragraph: 'bool?',
-    style: 'int?',
-    verse: 'int?',
-    versetext: 'string?',
+    _id: "objectId?",
+    __v: "int?",
+    _key: "objectId",
+    book: "string?",
+    chapter: "int?",
+    footnotes: "string?",
+    heading: "string?",
+    microheading: "bool?",
+    paragraph: "bool?",
+    style: "int?",
+    verse: "int?",
+    versetext: "string?",
   },
-  primaryKey: '_id',
+  primaryKey: "_id",
 };
 
 export const VerseSchema: Schema = new Schema({
