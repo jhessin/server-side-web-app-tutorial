@@ -8,13 +8,78 @@ import { BasePage, BiblePage } from "../components";
 let bibleLock: boolean = false;
 
 const NAMES = {
-  BOOKS: [
-    "Genesis",
-    "Exodus",
-    "Leviticus",
-    "Numbers",
-    // TODO: Finish this...
-  ],
+  BOOKS: {
+    OLD_TESTAMENT: [
+      "Genesis",
+      "Exodus",
+      "Leviticus",
+      "Numbers",
+      "Deuteronomy",
+      "Joshua",
+      "Judges",
+      "Ruth",
+      "1Samuel",
+      "2Samuel",
+      "1Kings",
+      "2Kings",
+      "1Chronicles",
+      "2Chronicles",
+      "Ezra",
+      "Nehemiah",
+      "Esther",
+      "Job",
+      "Psalms",
+      "Proverbs",
+      "Ecclesiastes",
+      "Song Of Solomon",
+      "Isaiah",
+      "Jeremiah",
+      "Lamentations",
+      "Ezekiel",
+      "Daniel",
+      "Hosea",
+      "Joel",
+      "Amos",
+      "Obadiah",
+      "Jonah",
+      "Micah",
+      "Nahum",
+      "Habakkuk",
+      "Zephaniah",
+      "Haggai",
+      "Zechariah",
+      "Malachi",
+    ],
+    NEW_TESTAMENT: [
+      "Matthew",
+      "Mark",
+      "Luke",
+      "John",
+      "Acts",
+      "Romans",
+      "1Corinthians",
+      "2Corinthians",
+      "Galatians",
+      "Ephesians",
+      "Philippians",
+      "Colossians",
+      "1Thessalonians",
+      "2Thessalonians",
+      "1Timothy",
+      "2Timothy",
+      "Titus",
+      "Philemon",
+      "Hebrews",
+      "James",
+      "1Peter",
+      "2Peter",
+      "1John",
+      "2John",
+      "3John",
+      "Jude",
+      "Revelation",
+    ],
+  },
 };
 
 const router = Router();
@@ -76,7 +141,7 @@ async function updateBible() {
   bibleLock = false;
 }
 
-router.get("/bibleRaw", (req, res, next) => {
+router.get("/bibleRaw", (_req, res, next) => {
   fetch(
     "https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=bible",
   )
@@ -116,7 +181,7 @@ router.get("/", async (req, res, next) => {
       page.data.message = "Generating Bible please wait a while and try again,";
       page.render();
     } else {
-      const book = NAMES.BOOKS[0];
+      const book = NAMES.BOOKS.NEW_TESTAMENT[0];
       const chapter = 1;
       console.log("Finding verses from database");
       const bk = await Verse.find(
@@ -213,7 +278,7 @@ router.post("/", (req, res, next) => {
   }
 });
 
-router.get("/forcedUpdate", (req, res, next) => {
+router.get("/forcedUpdate", (_req, res, next) => {
   try {
     Bible.deleteMany({}).then(() => res.redirect("/rev"));
   } catch (err) {
@@ -221,7 +286,7 @@ router.get("/forcedUpdate", (req, res, next) => {
   }
 });
 
-router.get("/commentary", async (req, res, next) => {
+router.get("/commentary", async (_req, res, next) => {
   try {
     const commentary = await fetch(
       "https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=commentary",
@@ -232,7 +297,7 @@ router.get("/commentary", async (req, res, next) => {
   }
 });
 
-router.get("/appendices", async (req, res, next) => {
+router.get("/appendices", async (_req, res) => {
   const appendices = await fetch(
     "https://www.revisedenglishversion.com/jsonrevexport.php?permission=yUp&autorun=1&what=appendices",
   ).then(r => r.json());
